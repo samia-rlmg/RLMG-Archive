@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <meta charset="utf-8"/>
+
+    <title>RLMG Library Drive Index</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  </head>
+
+  <body>
+    <img id="logo" src="images/logo.jpg">
+    <table id="header">
+      <tr>
+        <td><h1>RLMG Library Drive Index</h1></td>
+        <td><input type="text" size=60 name='search-bar' id='search-bar' value="" placeholder="Ex: hard drive number, project name, producer, keywords, etc." />
+            <input id="submit" type="submit" value="Submit" class="btn btn-default" /></td>
+        </tr>
+      </table>
+    <button type="button" class="main-page btn btn-default"><a href="submitToForm/newEntry.html" target="_blank">Create New Entry</a></button>
+    <button type="button" class="main-page btn btn-default"><a href="https://docs.google.com/spreadsheets/d/1LST9-FQj7HKwGB3TyyaUay4fMpS7-B4_0fafC_EOGlY/edit#gid=1878928640" target="_blank">Edit an Existing Entry</a></button>
+    <div class="dropdown">
+      <button id="dropbtn">—Sort by—</button>
+      <div id="sort-dropdown" class="dropdown-content">
+        <a href="#" id="sort-project">Project</a>
+        <a href="#" id="sort-drive">Drive Number</a>
+        <a href="#" id="sort-lto">LTO Tape</a>
+      </div>
+    </div>
+    <br><br>
+
+    <p id="showData"></p>
+
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>

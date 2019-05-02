@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.table-div {
+  width: 100px;
+  max-width: 200px;
+  max-height: 100px;
+  overflow: auto;
+}
+
+#logo {
+  width: 50px;
+}
+
+html {
+  padding: 5px 20px;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-size: 12px;
+}
+
+#search-bar {
+  width: 60%;
+  height: 35px;
+  float: right;
+}
+
+#submit {
+  display: none;
+}
+
+#archive-entries {
+  width: 100%;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.project-name {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.date-range {
+  font-style: italic;
+}
+
+table .last-row {
+  border-top: thin solid black;
+}
+
+/*Add horizontal line after each entry*/
+table tr#table-title td {
+  border-bottom: 1.5px solid #606060;
+  padding: 7px 0;
+}
+
+.btn {
+  height: 35px;
+  background-color: #B4BD34;
+  color: white;
+  font-size: 16px;
+}
+
+.main-page {
+  float: right;
+  margin: 0 5px;
+}
+
+.btn a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+#archive-entries tr td {
+  padding: 0 7px 0 0;
+}
+
+table tr.last-row td {
+    border-top: 1px solid #B8B8B8;
+    padding: 0;
+    margin: 0;
+}
+
+table {
+  font-size: small;
+  border-spacing: 0;
+}
+
+table td {
+  width: 25%;
+  vertical-align: top;
+}
+
+.company-code, .lto-no {
+  text-align: right;
+}
+
+.heading {
+  font-weight: bold;
+  padding: 4px 7px;
+}
+
+table a {
+  font-weight: lighter;
+  font-style: italic;
+  color: B4BD34;
+}
+
+/* Dropdown Button */
+#dropbtn {
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 6px;
+  font-size: 16px;
+  border: thin solid #B8B8B8;
+  cursor: pointer;
+  width: 300px;
+}
+
+#sort-dropdown {
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 6px;
+  font-size: 16px;
+  border: thin solid #B8B8B8;
+  cursor: pointer;
+  width: 300px;
+}
+
+/* Dropdown button on hover & focus */
+#dropbtn:hover, #dropbtn:focus {
+  background-color: #B8B8B8;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #B4BD34}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+
+/* New Entry Form */
+.control-label {
+  font-size: 14px;
+}
+
+.form-control {
+  height: 32px;
+  width: 70%;
+}
+
+textarea.form-control {
+  height: 64px;
+}
+
+/* #new-entry-form button {
+  width: 70%;
+  float: left;
+  margin: none;
+} */
+
+#new-entry-table {
+  width: 100%;
+}

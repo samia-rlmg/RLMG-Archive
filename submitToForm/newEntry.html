@@ -1,0 +1,178 @@
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>New Entry</title>
+    <link rel="stylesheet" href="../css/styles.css">
+  </head>
+
+  <body>
+    <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1>Create a New Entry</h1>
+      </div>
+    </div>
+    <hr><br>
+
+    <!-- Create a form that will get submitted to the Google Sheet specified in the script below. -->
+    <!-- Note: The input "name" attribute must EXACTLY match the column headers in the Google Sheet -->
+    <form class="form-horizontal" role="form" id="new-entry-form" name="submit-to-google-sheet">
+      <table id="new-entry-table">
+        <tr>
+          <td>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Project Name</label>
+              <div class="col-lg-3 inputGroupContainer">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="Project Name" placeholder="Project name"/>
+                </div>
+              </div>
+            </div><br>
+
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Company Code</label>
+              <div class="col-lg-3 inputGroupContainer">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="Company Code" placeholder="Company Code"/>
+                </div>
+              </div>
+            </div><br>
+
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Drive Number</label>
+              <div class="col-lg-3 inputGroupContainer">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="Drive Number" placeholder="Drive number"/>
+                </div>
+              </div>
+            </div><br>
+
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Project Start Date</label>
+              <div class="col-lg-3 inputGroupContainer">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="Project Start Date" placeholder="Project start date"/>
+                </div>
+              </div>
+            </div><br>
+
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Project End Date</label>
+              <div class="col-lg-3 inputGroupContainer">
+                <div class="input-group col-lg-10">
+                  <input type="text" class="form-control" name="Project End Date" placeholder="Project end date"></input>
+                </div>
+              </div>
+            </div><br>
+
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Vimeo Album Link</label>
+              <div class="col-lg-3 inputGroupContainer">
+                <div class="input-group col-lg-10">
+                  <input type="text" class="form-control" name="Vimeo Album Link" placeholder="Vimeo album link"></input>
+                </div>
+              </div>
+            </div><br>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Drive Contents</label>
+              <div class="col-lg-3 inputGroupContainer">
+                <div class="input-group col-lg-10">
+                  <textarea type="text" class="form-control" name="Drive Contents" placeholder="Drive contents"></textarea>
+                </div>
+              </div>
+            </div><br>
+
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Project Specs</label>
+              <div class="col-lg-3 inputGroupContainer">
+                <div class="input-group col-lg-10">
+                  <textarea type="text" class="form-control" name="Project Specs" placeholder="Project specs"></textarea>
+                </div>
+              </div>
+            </div><br>
+
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Project Managers/Producers</label>
+              <div class="col-lg-3 inputGroupContainer">
+                <div class="input-group col-lg-10">
+                  <input type="text" class="form-control" name="Project Managers/Producers" placeholder="Project managers/producers"></input>
+                </div>
+              </div>
+            </div><br>
+
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Featured Exhibits</label>
+              <div class="col-lg-3 inputGroupContainer">
+                <div class="input-group col-lg-10">
+                  <textarea type="text" class="form-control" name="Featured Exhibits" placeholder="Featured exhibits"></textarea>
+                </div>
+              </div>
+            </div><br>
+          </td>
+
+          <td>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">LTO Number</label>
+              <div class="col-lg-3 inputGroupContainer">
+                <div class="input-group col-lg-10">
+                  <textarea type="text" class="form-control" name="LTO Number" placeholder="LTO number"></textarea>
+                </div>
+              </div>
+            </div><br>
+
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Keywords</label>
+              <div class="col-lg-3 inputGroupContainer">
+                <div class="input-group col-lg-10">
+                  <textarea type="text" class="form-control" name="Keywords" placeholder="Keywords"></textarea>
+                </div>
+              </div>
+            </div><br>
+
+            <div class="form-group">
+              <div class="col-lg-9 col-lg-offset-3">
+                <button type="submit" class="btn btn-default" id="postForm">Submit</button>
+              </div>
+            </div><br>
+          </td>
+        </tr>
+      </table>
+
+    </form>
+
+    </div>
+  </body>
+
+  <!-- The below script is taken from this page on Github: https://github.com/jamiewilson/form-to-google-sheets/blob/master/README.md -->
+  <script>
+    // Get the value of scriptURL by copying the URL from the pop-up that appears after deploying your script as a web app.
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxWLreoJkwzKS5-RMD7WN5FNPFgGHw_1aRxEUpxL905QuUf_QUu/exec';
+    const form = document.forms['submit-to-google-sheet']; // This must match the "name" attribute in the form field above
+
+     //Post submitted data to Google sheet
+     form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+       .then(response => console.log('Success!', response))
+       .catch(error => console.error('Error!', error.message))
+       redirect();
+     })
+
+     //Redirect to "success" page
+     function redirect() {
+      const redirectUrl = 'success-page.html';
+      // $("form").on("submit", function() {
+        setTimeout("location.href = 'success-page.html';",100);
+      //   $(location).attr('href',redirectUrl);
+      // })
+    }
+
+  </script>
+
+<footer>
+<!-- <script src="validation-functions.js"></script> -->
+</footer>
+
+</html>
