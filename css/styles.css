@@ -166,6 +166,17 @@ table a {
 .show {display:block;}
 
 
+/* Editing Entries */
+#edit-bar {
+  width: 90%;
+  height: 35px;
+  float: left;
+}
+
+#submit-edit {
+  display: none;
+}
+
 /* New Entry Form */
 .control-label {
   font-size: 14px;

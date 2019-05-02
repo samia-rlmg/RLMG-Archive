@@ -10,7 +10,6 @@ var gsKey = "1K-ztOKnUQfPOZNnP405qrwzh1yOXiSRhgrBBgECdJJo"; // Must publish this
 $("input").keyup(function(event) {
   if (event.keyCode === 13) {
     $("#submit").click();
-    console.log("Submitted search");
   }
 });
 
@@ -29,7 +28,6 @@ function defineSearch() {
 
 function getJSON() {
 
-  console.log("Called getJSON");
   // Get spreadsheet data in JSON format
   const xhr = new XMLHttpRequest();
   const url='https://spreadsheets.google.com/feeds/list/'+gsKey+'/1/public/full?alt=json';
@@ -78,7 +76,7 @@ function makeTable(jsObj) {
     if (hit == 1 || searchTermArr == "") {
         // First row
         txt += "<tbody class='table-entry'><tr>" +
-            "<td><span class='project-name'>"+jsObj.feed.entry[i].gsx$projectname.$t+"</span>" +
+            "<td><span class='project-name editable'>"+jsObj.feed.entry[i].gsx$projectname.$t+"</span>" +
             "<span class='drive-no'> | Drive #"+jsObj.feed.entry[i].gsx$drivenumber.$t+"</span></td>" +
             "<td></td><td></td>" +
             "<td class='company-code'>"+jsObj.feed.entry[i].gsx$companycode.$t+"</td></tr></div>" +
@@ -205,4 +203,34 @@ function trimArray(arr) {
     arr[i] = arr[i].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
   }
   return arr;
+}
+
+// TESTING front-end Edit
+// Below code didn't work because element is being loaded dynamically.
+// $(document).ready(function() {
+//   $(".table-entry td").click(function() {
+//     console.log("Here");
+//   });
+// });
+
+// Once the element has loaded (dynamically), call editField.
+$(document).on('click','.table-entry .editable', editField);
+
+function editField() {
+  console.log("Called editField");
+  var target = event.target;
+  target.innerHTML = "<input type='text' size=60 name='edit-bar' id='edit-bar' value='' placeholder='New value' /><input id='submit-edit' type='submit' value='Submit' class='btn btn-default' />"
+
+  // Submit the new value on enter
+  $("input").keyup(function(event) {
+    if (event.keyCode === 13) {
+      $("#submit-edit").click();
+    }
+  });
+
+  // When the user submits a new value, change the content to that value
+  $("#submit-edit").click(function() {
+    target.innerHTML = $("#edit-bar").val();
+  });
+  console.log(target);
 }
