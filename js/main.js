@@ -5,6 +5,8 @@ google.charts.load('current', {'packages':['table']});
 
 //Set Google Sheets unique key
 var gsKey = "1K-ztOKnUQfPOZNnP405qrwzh1yOXiSRhgrBBgECdJJo"; // Must publish this Google Sheet to the web
+var sheet = "RLMG Archive"
+var apiKey = "AIzaSyBNuRlRwVqtCkOJKZLWotovV9wik4n1OM8"
 
 // Make "Enter" trigger the submit button
 $("input").keyup(function(event) {
@@ -76,7 +78,7 @@ function makeTable(jsObj) {
     if (hit == 1 || searchTermArr == "") {
         // First row
         txt += "<tbody class='table-entry'><tr>" +
-            "<td><span class='project-name editable'>"+jsObj.feed.entry[i].gsx$projectname.$t+"</span>" +
+            "<td><span class='a "+(i+2)+" project-name editable'>"+jsObj.feed.entry[i].gsx$projectname.$t+"</span>" +
             "<span class='drive-no'> | Drive #"+jsObj.feed.entry[i].gsx$drivenumber.$t+"</span></td>" +
             "<td></td><td></td>" +
             "<td class='company-code'>"+jsObj.feed.entry[i].gsx$companycode.$t+"</td></tr></div>" +
@@ -217,8 +219,9 @@ function trimArray(arr) {
 $(document).on('click','.table-entry .editable', editField);
 
 function editField() {
-  console.log("Called editField");
+
   var target = event.target;
+  var cell = target.className.split(" ")[0] + target.className.split(" ")[1];
   target.innerHTML = "<input type='text' size=60 name='edit-bar' id='edit-bar' value='' placeholder='New value' /><input id='submit-edit' type='submit' value='Submit' class='btn btn-default' />"
 
   // Submit the new value on enter
@@ -230,7 +233,32 @@ function editField() {
 
   // When the user submits a new value, change the content to that value
   $("#submit-edit").click(function() {
-    target.innerHTML = $("#edit-bar").val();
+    target.innerHTML = $("#edit-bar").val(); //change the entry as it appears on the page; still have to pass this into the spreadsheet
+
+    var newVal = {
+      "valueInputOption": "RAW", //takes user-entered value literally, rather than interpreting it as a formula
+      "data": [ //data to pass in as JSON object
+        {
+          "range": sheet + "!" + cell,
+          "values": [
+            [$("#edit-bar").val()] //the new, user-entered value
+          ]
+        }
+      ]
+    }
+
+    console.log(cell)
+    $.ajax({
+      url: 'https://sheets.googleapis.com/v4/spreadsheets/'+gsKey+'/values/' + sheet + '!' + cell + '?key='+apiKey,  //API url
+      type: 'PUT',   //any HTTP method
+      data: {
+        data: newVal
+      },      //Data as js object
+      success: function () {
+      }
+    });
+
   });
+
   console.log(target);
 }
